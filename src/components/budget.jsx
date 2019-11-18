@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import BudgetNumber from "./common/budgetNumber";
 import { getTransactions } from "../services/fakeTransactionService";
 import { getCategories } from "../services/fakeCategoryService";
+import { exportDefaultSpecifier } from "@babel/types";
 
 class Budget extends Component {
   state = {
@@ -10,6 +11,15 @@ class Budget extends Component {
     value3: 0
   };
 
+  componentDidMount() {
+    const getTrans = getTransactions();
+
+    const foodVal = this.totalCosts(getTrans, "Food");
+    const entertainmentVal = this.totalCosts(getTrans, "Entertainment");
+    const utilitiesVal = this.totalCosts(getTrans, "Utilities");
+
+    this.setState({ foodVal, entertainmentVal, utilitiesVal });
+  }
   handleChange1 = event => {
     this.setState({
       value1: event.target.value
@@ -30,10 +40,21 @@ class Budget extends Component {
     let sum = 0;
     for (var num in transactions) {
       if (transactions[num].category.name === cat) {
-        console.log(transactions[num].category.name);
         sum += transactions[num].cost;
+        if (cat === "Food") {
+          console.log("transaction: ", transactions[num].cost);
+          console.log("sum so far: ", sum);
+        }
       }
     }
+
+    // if (cat === "Food") {
+    //   this.setState({ foodVal: sum });
+    // } else if (cat === "Entertainment") {
+    //   this.setState({ entertainmentVal: sum });
+    // } else if (cat === "Utilities") {
+    //   this.setState({ utilitiesVal: sum });
+    // }
     return sum;
   };
 
@@ -42,17 +63,6 @@ class Budget extends Component {
   }
 
   render() {
-    const getTrans = getTransactions();
-    const cate = getCategories();
-    let cat1 = this.totalCosts(getTrans, cate[0].name);
-    console.log(cat1);
-    let cat2 = this.totalCosts(getTrans, cate[1].name);
-    console.log(cat2);
-
-    const foodVal = this.totalCosts(getTrans, "Food");
-    const entertainmentVal = this.totalCosts(getTrans, "Entertainment");
-    const utilitiesVal = this.totalCosts(getTrans, "Utilities");
-
     return (
       <table className="table table-hover">
         <thead>
@@ -73,8 +83,10 @@ class Budget extends Component {
                 onChange={this.handleChange1}
               />
             </td>
-            <td>${foodVal}</td>
-            <td>${this.remainingBudget(this.state.value1, foodVal)}</td>
+            <td>${this.state.foodVal}</td>
+            <td>
+              ${this.remainingBudget(this.state.value1, this.state.foodVal)}
+            </td>
           </tr>
           <tr>
             <th scope="row">Entertainment</th>
@@ -85,9 +97,13 @@ class Budget extends Component {
                 onChange={this.handleChange2}
               />
             </td>
-            <td>${entertainmentVal}</td>
+            <td>${this.state.entertainmentVal}</td>
             <td>
-              ${this.remainingBudget(this.state.value2, entertainmentVal)}
+              $
+              {this.remainingBudget(
+                this.state.value2,
+                this.state.entertainmentVal
+              )}
             </td>
           </tr>
           <tr>
@@ -99,8 +115,11 @@ class Budget extends Component {
                 onChange={this.handleChange3}
               />
             </td>
-            <td>${utilitiesVal}</td>
-            <td>${this.remainingBudget(this.state.value3, utilitiesVal)}</td>
+            <td>${this.state.utilitiesVal}</td>
+            <td>
+              $
+              {this.remainingBudget(this.state.value3, this.state.utilitiesVal)}
+            </td>
           </tr>
         </tbody>
       </table>

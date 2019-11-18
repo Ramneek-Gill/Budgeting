@@ -143,7 +143,7 @@ export function saveTransaction(transaction) {
   transactionInDb.category = categoriesAPI.categories.find(
     c => c._id === transaction.categoryId
   );
-  transactionInDb.cost = transaction.cost;
+  transactionInDb.cost = Number(transaction.cost);
 
   if (!transactionInDb._id) {
     transactionInDb._id = Date.now().toString();
