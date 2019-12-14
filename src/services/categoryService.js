@@ -1,5 +1,6 @@
 import http from "./httpService";
+import { apiUrl } from "../config.json";
 
 export function getCategories() {
-  return http.get("https://stormy-meadow-32596.herokuapp.com/api/categories");
+  return http.get(apiUrl + "/categories");
 }

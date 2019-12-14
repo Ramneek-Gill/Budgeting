@@ -1,7 +1,7 @@
 import http from "./httpService";
+import { apiUrl } from "../config.json";
 
-const apiEndpoint =
-  "https://stormy-meadow-32596.herokuapp.com/api/transactions";
+const apiEndpoint = apiUrl + "/transactions";
 
 export function getTransactions() {
   return http.get(apiEndpoint);
