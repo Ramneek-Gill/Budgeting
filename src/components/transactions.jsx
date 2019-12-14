@@ -7,7 +7,7 @@ import {
   getTransactions,
   deleteTransaction
 } from "../services/fakeTransactionService";
-import { getCategories } from "../services/fakeCategoryService";
+import { getCategories } from "../services/categoryService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
 import SearchBox from "./searchBox";
@@ -23,11 +23,9 @@ class Transactions extends Component {
     sortColumn: { path: "item", order: "asc" }
   };
 
-  componentDidMount() {
-    const categories = [
-      { _id: "", name: "All Categories" },
-      ...getCategories()
-    ];
+  async componentDidMount() {
+    const { data } = await getCategories();
+    const categories = [{ _id: "", name: "All Categories" }, ...data];
 
     this.setState({ transactions: getTransactions(), categories });
   }
