@@ -6,11 +6,12 @@ import Pagination from "./common/pagination";
 import {
   getTransactions,
   deleteTransaction
-} from "../services/fakeTransactionService";
+} from "../services/transactionService";
 import { getCategories } from "../services/categoryService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
 import SearchBox from "./searchBox";
+import { toast } from "react-toastify";
 
 class Transactions extends Component {
   state = {
@@ -27,16 +28,24 @@ class Transactions extends Component {
     const { data } = await getCategories();
     const categories = [{ _id: "", name: "All Categories" }, ...data];
 
-    this.setState({ transactions: getTransactions(), categories });
+    const { data: transactions } = await getTransactions();
+    this.setState({ transactions, categories });
   }
 
-  handleDelete = transaction => {
-    const transactions = this.state.transactions.filter(
+  handleDelete = async transaction => {
+    const originalTransactions = this.state.transactions;
+    const transactions = originalTransactions.filter(
       m => m._id !== transaction._id
     );
     this.setState({ transactions });
-
-    deleteTransaction(transaction._id);
+    try {
+      await deleteTransaction(transaction._id);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404) {
+        toast.error("This transaction has already been deleted.");
+        this.setState({ transactions: originalTransactions });
+      }
+    }
   };
 
   // handleLike = transaction => {
