@@ -44,7 +44,7 @@ class TransactionForm extends Form {
       const { data: transaction } = await getTransaction(transactionId);
       this.setState({ data: this.mapToViewModel(transaction) });
     } catch (ex) {
-      if (ex.response && ex.response.status === 500) {
+      if (ex.response) {
         this.props.history.replace("/not-found");
       }
     }
