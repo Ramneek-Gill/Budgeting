@@ -14,7 +14,7 @@ export function getTransaction(transactionId) {
 
 export function saveTransaction(transaction) {
   if (transaction._id) {
-    const body = { ...transaction };
+    const body = Object.assign({}, transaction);
     delete body._id;
     return http.put(apiEndpoint + "/" + transaction._id, body);
   }
