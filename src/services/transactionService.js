@@ -15,8 +15,10 @@ export function saveTransaction(transaction) {
   if (transaction._id) {
     const body = { ...transaction };
     delete body._id;
+    console.log(body);
     return http.put(apiEndpoint + "/" + transaction._id, body);
   }
+  console.log(transaction);
   return http.post(apiEndpoint, transaction);
 }
 
