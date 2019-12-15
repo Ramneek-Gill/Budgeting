@@ -5,7 +5,7 @@ const apiEndpoint = apiUrl + "/transactions";
 const corsHeader = "https://cors-anywhere.herokuapp.com/";
 
 export function getTransactions() {
-  return http.get(apiEndpoint);
+  return http.get(corsHeader + apiEndpoint);
 }
 
 export function getTransaction(transactionId) {
@@ -24,5 +24,5 @@ export function saveTransaction(transaction) {
 }
 
 export function deleteTransaction(transactionId) {
-  return http.delete(apiEndpoint + "/" + transactionId);
+  return http.delete(corsHeader + apiEndpoint + "/" + transactionId);
 }
