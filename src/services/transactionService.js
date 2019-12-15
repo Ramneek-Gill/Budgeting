@@ -13,11 +13,11 @@ export function getTransaction(transactionId) {
 }
 
 export function saveTransaction(transaction) {
-  const anid = transaction._id;
   if (transaction._id) {
-    const body = Object.assign({}, transaction);
-
-    return http.put(apiEndpoint + "/" + anid, body);
+    const anid = transaction._id;
+    // const body = Object.assign({}, transaction);
+    delete transaction._id;
+    return http.put(apiEndpoint + "/" + anid, transaction);
   }
   return http.post(apiEndpoint, transaction);
 }
