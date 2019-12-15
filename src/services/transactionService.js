@@ -16,7 +16,7 @@ export function saveTransaction(transaction) {
   const anid = transaction._id;
   if (transaction._id) {
     const body = Object.assign({}, transaction);
-    delete body._id;
+
     return http.put(apiEndpoint + "/" + anid, body);
   }
   return http.post(apiEndpoint, transaction);
