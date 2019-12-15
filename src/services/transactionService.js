@@ -9,7 +9,7 @@ export function getTransactions() {
 }
 
 export function getTransaction(transactionId) {
-  return http.get(apiEndpoint + "/" + transactionId);
+  return http.get(corsHeader + apiEndpoint + "/" + transactionId);
 }
 
 export function saveTransaction(transaction) {
