@@ -1,6 +1,5 @@
 import http from "./httpService";
 import { apiUrl } from "../config.json";
-// import { isMobileDevice } from "react-select/src/utils";
 
 const apiEndpoint = apiUrl + "/transactions";
 
@@ -13,12 +12,12 @@ export function getTransaction(transactionId) {
 }
 
 export function saveTransaction(transaction) {
-  //   if (transaction._id) {
-  //     const body = {...transaction};
-  //     delete body._id;
-  //     return http.put(apiEndpoint + "/" + transaction._id, body);
-  //   }
-  //   return http.post(apiEndpoint, transaction);
+  if (transaction._id) {
+    const body = { ...transaction };
+    delete body._id;
+    return http.put(apiEndpoint + "/" + transaction._id, body);
+  }
+  return http.post(apiEndpoint, transaction);
 }
 
 export function deleteTransaction(transactionId) {
