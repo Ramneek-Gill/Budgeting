@@ -4,7 +4,7 @@ import Form from "./common/form";
 import {
   getTransaction,
   saveTransaction
-} from "../services/fakeTransactionService";
+} from "../services/transactionService";
 import { getCategories } from "../services/categoryService";
 
 class TransactionForm extends Form {
@@ -40,7 +40,7 @@ class TransactionForm extends Form {
     const transactionId = this.props.match.params.id;
     if (transactionId === "new") return;
 
-    const transaction = getTransaction(transactionId);
+    const { data: transaction } = await getTransaction(transactionId);
     if (!transaction) return this.props.history.replace("/not-found");
 
     this.setState({ data: this.mapToViewModel(transaction) });
