@@ -5,7 +5,7 @@ import {
   getTransaction,
   saveTransaction
 } from "../services/fakeTransactionService";
-import { getCategories } from "../services/fakeCategoryService";
+import { getCategories } from "../services/categoryService";
 
 class TransactionForm extends Form {
   state = {
@@ -33,8 +33,8 @@ class TransactionForm extends Form {
       .label("Cost")
   };
 
-  componentDidMount() {
-    const categories = getCategories();
+  async componentDidMount() {
+    const { data: categories } = await getCategories();
     this.setState({ categories });
 
     const transactionId = this.props.match.params.id;
