@@ -1,6 +1,6 @@
 import http from "./httpService";
 import { apiUrl } from "../config.json";
-import { isMobileDevice } from "react-select/src/utils";
+// import { isMobileDevice } from "react-select/src/utils";
 
 const apiEndpoint = apiUrl + "/transactions";
 
