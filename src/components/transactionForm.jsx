@@ -59,7 +59,7 @@ class TransactionForm extends Form {
     };
   }
 
-  doSubmit = async () => {
+  doSubmit = () => {
     saveTransaction(this.state.data);
 
     this.props.history.push("/transactions");
