@@ -9,6 +9,8 @@ axios.interceptors.response.use(null, error => {
     error.response.status < 500;
 
   console.log("for unauthenticated command: " + expectedError.status);
+  console.log("error value: " + error);
+  console.log("error status: " + error.response.status);
   // if (expectedError.status === 401) {
   //   toast.error("User must be logged in to access this capability.");
   // }
