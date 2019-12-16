@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Table from "./common/table";
+import { getCurrentUser } from "../services/authService";
 
 class TransactionTable extends Component {
   columns = [
@@ -12,21 +13,26 @@ class TransactionTable extends Component {
       )
     },
     { path: "category.name", label: "Category" },
-    { path: "cost", label: "Cost" },
-
-    {
-      key: "delete",
-      content: transaction => (
-        <button
-          onClick={() => this.props.onDelete(transaction)}
-          className="btn btn-danger btn-sm"
-        >
-          Delete
-        </button>
-      )
-    }
+    { path: "cost", label: "Cost" }
   ];
 
+  constructor() {
+    super();
+    const user = getCurrentUser();
+    if (user) {
+      this.columns.push({
+        key: "delete",
+        content: transaction => (
+          <button
+            onClick={() => this.props.onDelete(transaction)}
+            className="btn btn-danger btn-sm"
+          >
+            Delete
+          </button>
+        )
+      });
+    }
+  }
   render() {
     const { transactions, onSort, sortColumn } = this.props;
 

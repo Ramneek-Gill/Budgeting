@@ -35,7 +35,9 @@ class App extends Component {
             <Route path="/transactions/:id" component={TransactionForm} />
             {/* <Route path="/subscriptions/:id" component={SubscriptionForm} /> */}
             <Route path="/transactions" component={Transactions} />
-            <Route path="/budget" component={Budget} />
+            {/* <Route path="/transactions" 
+            render={props => <Transactions {...props} user={this.state.user}/>} />
+            <Route path="/budget" component={Budget} /> */}
             {/* <Route path="/subscriptions" component={Subscriptions} /> */}
             <Route path="/not-found" component={NotFound} />
             <Redirect from="/" exact to="/transactions" />
