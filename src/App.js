@@ -42,6 +42,7 @@ class App extends Component {
             {/* <Route path="/subscriptions" component={Subscriptions} /> */}
             <Route path="/not-found" component={NotFound} />
             <Redirect from="/" exact to="/transactions" />
+            <Redirect from="/profile" exact to="/transactions" />
             <Redirect to="/not-found" />
           </Switch>
         </main>
