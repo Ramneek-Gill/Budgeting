@@ -20,6 +20,7 @@ class App extends Component {
     try {
       const jwt = localStorage.getItem("token");
       const user = jwtDecode(jwt);
+      console.log(user);
       this.setState({ user });
     } catch (ex) {}
   }
