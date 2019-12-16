@@ -112,8 +112,6 @@ class Transactions extends Component {
     const { length: count } = this.state.transactions;
     const { pageSize, currentPage, sortColumn, searchQuery } = this.state;
 
-    if (count === 0) return <p>There are no transactions in the database.</p>;
-
     const { totalCount, data: transactions } = this.getPagedData();
 
     return (
