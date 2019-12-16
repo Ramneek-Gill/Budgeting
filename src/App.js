@@ -9,8 +9,8 @@ import NavBar from "./components/navBar";
 import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
 import Budget from "./components/budget";
-import Logout from "./components/common/logout";
-import {getCurrentUser} from './services/authService';
+import Logout from "./components/logout";
+import { getCurrentUser } from "./services/authService";
 import Subscriptions from "./components/subscriptions";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -19,7 +19,7 @@ class App extends Component {
   state = {};
   componentDidMount() {
     const user = getCurrentUser();
-    this.setState({user});
+    this.setState({ user });
   }
 
   render() {
