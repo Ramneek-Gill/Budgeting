@@ -7,9 +7,9 @@ axios.interceptors.response.use(null, error => {
     error.response &&
     error.response.status >= 400 &&
     error.response.status < 500;
-  if (expectedError.status === 401) {
-    toast.error("User must be logged in to access this capability.");
-  }
+  // if (expectedError.status === 401) {
+  //   toast.error("User must be logged in to access this capability.");
+  // }
   if (!expectedError) {
     logger.log(error);
     toast.error("An unexpected error occurrred.");
