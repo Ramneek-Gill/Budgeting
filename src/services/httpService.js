@@ -11,9 +11,13 @@ axios.interceptors.response.use(null, error => {
   console.log("for unauthenticated command: " + expectedError.status);
   console.log("error value: " + error);
   console.log("error status: " + error.response.status);
-  // if (expectedError.status === 401) {
-  //   toast.error("User must be logged in to access this capability.");
-  // }
+  if (
+    error.response.status === 400 &&
+    !axios.defaults.headers.common["x-auth-token"]
+  ) {
+    toast.error("User must be logged in to access this capability.");
+  }
+
   if (!expectedError) {
     logger.log(error);
     toast.error("An unexpected error occurrred.");
