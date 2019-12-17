@@ -8,7 +8,6 @@ axios.interceptors.response.use(null, error => {
     error.response.status >= 400 &&
     error.response.status < 500;
 
-  console.log("for unauthenticated command: " + expectedError.status);
   console.log("error value: " + error);
   console.log("error status: " + error.response.status);
   if (
