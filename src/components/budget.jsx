@@ -40,6 +40,7 @@ class Budget extends Component {
   totalCosts = (transactions, cat) => {
     let sum = 0;
     for (var num in transactions) {
+      console.log(transactions[num].category.name);
       if (transactions[num].category.name === cat) {
         sum += transactions[num].cost;
         if (cat === "Food") {
