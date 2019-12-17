@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import BudgetNumber from "./common/budgetNumber";
-import { getTransactions } from "../services/fakeTransactionService";
+import { getTransactions } from "../services/transactionService";
 import { getCategories } from "../services/fakeCategoryService";
 import { exportDefaultSpecifier } from "@babel/types";
 
@@ -11,8 +11,9 @@ class Budget extends Component {
     value3: 0
   };
 
-  componentDidMount() {
-    const getTrans = getTransactions();
+  async componentDidMount() {
+    const getTrans = await getTransactions();
+    console.log(getTrans);
 
     const foodVal = this.totalCosts(getTrans, "Food");
     const entertainmentVal = this.totalCosts(getTrans, "Entertainment");
