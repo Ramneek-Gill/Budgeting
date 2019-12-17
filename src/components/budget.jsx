@@ -129,7 +129,7 @@ class Budget extends Form {
         <form onSubmit={this.handleSubmit}>
           {this.renderSelect("categoryId", "Category", this.state.categories)}
           {this.renderInput("budget", "Budget", "number")}
-          {this.renderButton("Save")}
+          {this.renderButton("Set Budget")}
         </form>
       </React.Fragment>
     );
