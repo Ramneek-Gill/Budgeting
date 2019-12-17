@@ -13,7 +13,7 @@ class Budget extends Component {
 
   async componentDidMount() {
     const getTrans = await getTransactions();
-    console.log(getTrans);
+    console.log(getTrans.data[1]);
 
     const foodVal = this.totalCosts(getTrans, "Food");
     const entertainmentVal = this.totalCosts(getTrans, "Entertainment");
@@ -40,7 +40,6 @@ class Budget extends Component {
   totalCosts = (transactions, cat) => {
     let sum = 0;
     for (var num in transactions) {
-      console.log(transactions[num].category);
       if (transactions[num].category.name === cat) {
         sum += transactions[num].cost;
         if (cat === "Food") {
