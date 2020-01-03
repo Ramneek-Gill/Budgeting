@@ -1,6 +1,6 @@
 Deployed Application Url: https://pacific-reef-90107.herokuapp.com/transactions
 
-Backend (NodeJS,Express): https://github.com/Ramneek-Gill/BudgetingAPI
+Backend (NodeJS, Express): https://github.com/Ramneek-Gill/BudgetingAPI
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
