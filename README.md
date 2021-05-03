@@ -1,9 +1,14 @@
+# Budgeting App
+
+## Deployed Application URL
 Use the deployed application on heroku: https://pacific-reef-90107.herokuapp.com/transactions
 
 Backend (NodeJS, Express): https://github.com/Ramneek-Gill/BudgetingAPI
 
 You can develop and test this application locally after cloning repository by executing the command: `npm start` 
 
+
+## Application Description and How To Use
 This project is a web application to record user transactions that occur under different categories of spending. The purpose of this project was to create a full stack web application utilizing a front end framework `React`, a back-end framework `Express` and a database `MongoDB` to create, read, update, and delete user transactions and also show budget data based on these recorded transactions.
 
 A registration feature was also added to the application. The user must register and be logged in to post new transactions.
